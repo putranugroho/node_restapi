@@ -6,10 +6,10 @@ var bodyParser = require('body-parser')
 
 //CONNECT TO MYSQL
 var con = mysql.createConnection({
-    host:'localhost',
-    user:'root',
-    password:'',
-    database:'absensi'
+    host:'us-cdbr-east-03.cleardb.com',
+    user:'b617105d9e9d8f',
+    password:'de7cb19a',
+    database:'heroku_c21ba68034e1281'
 })
 
 var app=express()
@@ -199,6 +199,10 @@ app.get("/load_attendance/",(req,res,next)=>{
 //         res.json(result)
 //     })
 // })
+
+app.get("/",(req,res,next)=>{
+    res.end(JSON.stringify('Welcome to Putra Nugroho [Absensi] RestAPI'))
+})
 
 //START SERVER
 let port = process.env.PORT || 3000
