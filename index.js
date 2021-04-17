@@ -7,7 +7,7 @@ var bodyParser = require('body-parser')
 //CONNECT TO MYSQL
 var con = mysql.createConnection({
     host:'us-cdbr-east-03.cleardb.com',
-    user:'b617105d9e9d8f',
+    user:'b1ac05f9bac715',
     password:'de7cb19a',
     database:'heroku_c21ba68034e1281'
 })
