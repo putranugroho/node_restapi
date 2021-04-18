@@ -90,9 +90,9 @@ app.post('/login/',(req,res,next)=>{
             //Hash password from Login request with salt in database
             var hashed_password = checkHashPassword(user_password,salt).passwordHash
             if (encrypted_password == hashed_password) {
-                res.end(JSON.stringify(result[0]))
+                res.json(result)
             } else {
-                res.end(JSON.stringify('Wrong Password'))
+                res.json('Wrong Password')
             }
         } else {
             res.json('User not exist')
@@ -117,7 +117,7 @@ app.post('/clock_in/',(req,res,next)=>{
             res.json('Attendance error: ',err)
         })
         if (result && result.length) {
-            res.end(JSON.stringify("Already Clock In"))
+            res.json({result:'Already Clock In'})
         } else {
             con.query('INSERT INTO `attendance`(`userID`, `date`, `clock_in`, `clock_out`, `noted`) VALUES (?,?,?,?,?)',
             [user_id,date,clock_in,clock_out,noted],function(err,result,fields) {
@@ -125,7 +125,7 @@ app.post('/clock_in/',(req,res,next)=>{
                     console.log('[MYSQL ERROR]',err);
                     res.json('Attendance error: ',err)
                 })
-                res.json('Clock In Successful')
+                res.json({result:'Clock In Successfull'})
             })
         }
     })
@@ -145,9 +145,9 @@ app.post('/check_clock_in/',(req,res,next)=>{
             res.json('Attendance error: ',err)
         })
         if (result && result.length) {
-            res.end(JSON.stringify(result[0]))
+            res.json(result[0])
         } else {
-            res.end(JSON.stringify('Not Clock In Yet'))
+            res.json({result:'Not Clock In Yet'})
         }
     })
 
@@ -166,7 +166,7 @@ app.post('/clock_out/',(req,res,next)=>{
             console.log('[MYSQL ERROR]',err);
             res.json('Attendance error: ',err)
     })
-    res.json('Clock Out Successful')
+    res.json({result:'Clock Out Successfull'})
     })
 
 })
