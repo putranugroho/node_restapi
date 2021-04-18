@@ -90,12 +90,12 @@ app.post('/login/',(req,res,next)=>{
             //Hash password from Login request with salt in database
             var hashed_password = checkHashPassword(user_password,salt).passwordHash
             if (encrypted_password == hashed_password) {
-                res.json(result)
+                res.json(result[0])
             } else {
-                res.json('Wrong Password')
+                res.json({result:'Wrong Password'})
             }
         } else {
-            res.json('User not exist')
+            res.json({result:'User not exist'})
         }
     })
 
