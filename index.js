@@ -171,6 +171,23 @@ app.post('/clock_out/',(req,res,next)=>{
 
 })
 
+app.post('/delete_attendance/',(req,res,next)=>{
+    var post_data = req.body
+
+    var user_id = post_data.userID
+    var date = post_data.date
+
+    con.query('DELETE FROM `attendance` WHERE',
+    [user_id,date],function(err,result,fields) {
+        con.on('error',function(err) {
+            console.log('[MYSQL ERROR]',err);
+            res.json('Attendance error: ',err)
+    })
+    res.json({result:'Attendance Deleted'})
+
+    })
+})
+
 // GET SEMENTARA
 app.get("/load_attendance/",(req,res,next)=>{
 
