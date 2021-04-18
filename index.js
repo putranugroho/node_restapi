@@ -218,7 +218,7 @@ app.get("/load_attendance/",(req,res,next)=>{
 // })
 
 app.get("/",(req,res,next)=>{
-    res.end(JSON.stringify('Welcome to Putra Nugroho [Absensi] RestAPI'))
+    res.end(JSON.stringify('Welcome to Putra Nugroho [Absensi] RestAPI port : ${port}'))
 })
 
 //START SERVER
